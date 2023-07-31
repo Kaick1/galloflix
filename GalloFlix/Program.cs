@@ -1,7 +1,13 @@
+using GalloFlix.Interfaces;
+using GalloFlix.Repositories;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+builder.Services.AddTransient<IGenreRepository, GenreRepository>();
+builder.Services.AddTransient<IMovieRepository, MovieRepository>();
 
 var app = builder.Build();
 
@@ -25,3 +31,5 @@ app.MapControllerRoute(
     pattern: "{controller=Home}/{action=Index}/{id?}");
 
 app.Run();
+
+
